@@ -3,6 +3,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const pool = require('./config/db');
 
+const userRouter = require('./routes/userRoutes') 
 
 dotenv.config();
 
@@ -15,10 +16,9 @@ app.use(express.json());
 app.use(cors());
 
 //routes
-
+app.use("/api", userRouter)
 
 //error handling
-
 
 // testing postgres
 
