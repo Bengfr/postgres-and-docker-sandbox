@@ -23,10 +23,10 @@ app.use("/api", userRouter)
 
 // public folder
   // Serve static files from public directory
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../public')));
   // Route to serve your main HTML file
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '..','public', 'html', 'index.html'));
+  res.sendFile(path.join(__dirname, '..','public', 'html','index.html'));
 });
 
 //server running
