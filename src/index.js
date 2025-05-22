@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const pool = require('./config/db');
+const path = require('path');
 
 const userRouter = require('./routes/userRoutes') 
 
@@ -20,12 +21,13 @@ app.use("/api", userRouter)
 
 //error handling
 
-// testing postgres
-
-app.get("/", async(req, res) => {
-  const result = await pool.query("SELECT  current_database()");
-  res.send(`The database name is : ${result.rows[0].current_database}`);
-})
+// public folder
+  // Serve static files from public directory
+app.use(express.static(path.join(__dirname, 'public')));
+  // Route to serve your main HTML file
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '..','public', 'html', 'index.html'));
+});
 
 //server running
 app.listen(port, () => {
