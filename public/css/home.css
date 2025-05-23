@@ -1,5 +1,50 @@
-header{
-    background-image: url(../images/header-img.jpg);
+/* Your existing styles */
+.hero-section {
+    background-image: url('../images/header-img.jpg');
     background-size: cover;
     background-position: center;
+    height: 700px;
+    position: relative;
+    color: white;
+    margin: 10px;
 }
+
+.navbar-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px 0;
+}
+
+.hero-content {
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    max-width: 600px;
+}
+
+/* New navbar edge alignment styles */
+.navbar-container {
+    padding-left: 1.5rem;  /* Match this with your content padding */
+    padding-right: 1.5rem; /* Match this with your content padding */
+    width: 100%;
+}
+
+.navbar-nav {
+    margin-left: -12px; /* Compensate for Bootstrap's nav-item padding */
+}
+
+  .card {
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .card-img-top {
+    transition: transform 0.5s ease;
+  }
+  
+  .card:hover .card-img-top {
+    transform: scale(1.05);
+  }

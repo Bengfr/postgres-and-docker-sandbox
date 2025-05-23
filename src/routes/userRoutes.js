@@ -6,9 +6,9 @@ const { createUser, getAllUsers, getUserByID, updateUser, deleteUser } = require
 
 router.post("/user", createUser);
 router.get("/user", getAllUsers);
-router.get("/user/:userid", getUserByID);
-router.put("/user/:userid", updateUser);
-router.delete("/user/:userid", deleteUser);
+router.get("/user/:user_id", getUserByID);
+router.put("/user/:user_id", updateUser);
+router.delete("/user/:user_id", deleteUser);
 
 
 module.exports = router

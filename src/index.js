@@ -5,6 +5,7 @@ const pool = require('./config/db');
 const path = require('path');
 
 const userRouter = require('./routes/userRoutes') 
+const postRouter = require('./routes/postRouter')
 
 dotenv.config();
 
@@ -18,15 +19,19 @@ app.use(cors());
 
 //routes
 app.use("/api", userRouter)
-
+app.use("/api", postRouter)
 //error handling
 
 // public folder
   // Serve static files from public directory
 app.use(express.static(path.join(__dirname, '../public')));
   // Route to serve your main HTML file
-app.get('/', (req, res) => {
+app.get('/index.html', (req, res) => {
   res.sendFile(path.join(__dirname, '..','public', 'html','index.html'));
+});
+
+app.get('/explore.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'public', 'html', 'explore.html'));
 });
 
 //server running
