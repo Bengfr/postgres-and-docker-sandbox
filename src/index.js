@@ -15,6 +15,7 @@ const app = express();
 
 //middleware
 app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 app.use(cors());
 
 //routes
@@ -34,7 +35,16 @@ app.get('/explore.html', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'public', 'html', 'explore.html'));
 });
 
+app.get('/register.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'public', 'html', 'register.html'));
+});
+
+app.get('/login.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'public', 'html', 'login.html'));
+});
+
+
 //server running
 app.listen(port, () => {
-  console.log(`Server is running on port http://localhost:${port}`);
+  console.log(`Server is running on port http://localhost:${port}/index.html`);
 });

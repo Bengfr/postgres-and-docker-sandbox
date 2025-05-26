@@ -7,11 +7,17 @@ const handleResponse = (res, status, message, data = null) => {
     })
 }
 
-const createUser = async (req, res, next) =>{
-    const {name, email} = req.body;
+const createUser = async (req, res, next) => {
+    const {username, email, password_unHashed} = req.body;
     try {
-        const newUser = await createUserService(name, email);
-        handleResponse(res, 201, "User created successfully", newUser)
+        const newUser = await createUserService(username, email, password_unHashed);
+
+        // If the client expects HTML (browser form), redirect
+        if (req.accepts('html')) {
+            return res.redirect('/login.html');
+        }
+        // Otherwise, send JSON (API/AJAX)
+        handleResponse(res, 201, "User created successfully", newUser);
     } catch (err) {
         next(err);
     }

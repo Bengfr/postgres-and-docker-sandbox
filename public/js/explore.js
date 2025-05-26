@@ -16,11 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch('/api/posts', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    post_title, 
-                    post_description, 
+                body: JSON.stringify({
+                    post_title,
+                    post_description,
                     post_content,
-                    post_date 
+                    post_date
                 }),
             });
 
@@ -30,14 +30,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const result = await response.json();
             console.log("Success:", result);
-            
+
             // Close the Bootstrap modal after successful submission
             const modal = bootstrap.Modal.getInstance(document.getElementById('contentModal'));
             modal.hide();
-            
+
             // Reset the form
             contentForm.reset();
-            
+
             // Optional: Show success message
             alert('Post created successfully!');
             
