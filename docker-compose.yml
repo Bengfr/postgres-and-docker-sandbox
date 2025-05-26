@@ -11,7 +11,7 @@ services:
     volumes:
       - .:/usr/src/index  # for development (optional)
       - /usr/src/index/node_modules  # keep container's node_modules
-
+    command: npm run dev
   # PostgreSQL database
   db:
     image: postgres:13
