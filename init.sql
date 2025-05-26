@@ -41,7 +41,5 @@ ADD CONSTRAINT blog_likes_user_post_unique UNIQUE (user_id, post_id);
 
 -- ####################################################################
 -- # Basic INSERT statement
--- # See https://www.ibm.com/docs/en/db2-for-zos/13?topic=statements-insert for complete syntax.
--- ####################################################################
-INSERT INTO blog_users (username, email, password_hash)
-    VALUES ("Admin", "admin@mail.com", "Admin123")
+
+    VALUES ('Admin', 'admin@mail.com', 'Admin123')
