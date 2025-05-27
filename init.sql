@@ -39,7 +39,6 @@ ADD CONSTRAINT blog_likes_post_id_fkey FOREIGN KEY (post_id) REFERENCES blog_pos
 ALTER TABLE blog_likes
 ADD CONSTRAINT blog_likes_user_post_unique UNIQUE (user_id, post_id);
 
--- ####################################################################
--- # Basic INSERT statement
 
-    VALUES ('Admin', 'admin@mail.com', 'Admin123')
+INSERT INTO blog_users (username, email, password_hash)
+    VALUES ('Admin', 'admin@mail.com', 'Admin123');

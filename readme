@@ -1,1 +1,12 @@
 Hvis ikke noe env variables. bytt port i docker-compose til 3000
+
+locally run (npm run dev) change port to 3000 
+ - change api link in register
+
+Open PGadmin page and login with credentials from docker-compose file
+1. register server
+
+host name: db
+maintenance database: blog
+username: postgres
+pw: Admin123

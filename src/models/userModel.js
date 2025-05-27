@@ -2,7 +2,7 @@ const pool = require('../config/db')
 const argon2 = require('argon2')
 
 const getAllUsersService = async () => {
-    const result = await pool.query("SELECT * FROM blog_users");
+    const result = await pool.query("SELECT user_id, username, email, password_hash, created FROM blog_users");
     return result.rows;
 };
 
@@ -42,10 +42,34 @@ const deleteUserService = async (user_id) => {
     return result.rows[0];
 };
 
+const loginUserService = async (email, loginPassword) => {
+    const result = await pool.query(
+        "SELECT user_id, username, email, password_hash, created FROM blog_users WHERE email = $1",
+        [email]
+    );
+
+    if (result.rows.length === 0) {
+        // No user found
+        return null;
+    }
+    
+    const user = result.rows[0];
+    const passwordValid = await argon2.verify(user.password_hash, loginPassword);
+    if (!passwordValid) {
+        // Password does not match
+        return null;
+    }
+
+    // Optionally, remove password_hash before returning
+    delete user.password_hash;
+    return user;
+};
+
 module.exports = {
     getAllUsersService,
     getUserByIdService,
     createUserService,
     updateUserService,
-    deleteUserService
+    deleteUserService,
+    loginUserService
 };

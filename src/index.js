@@ -9,7 +9,7 @@ const postRouter = require('./routes/postRouter')
 
 dotenv.config();
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 const app = express();
 
@@ -46,5 +46,6 @@ app.get('/login.html', (req, res) => {
 
 //server running
 app.listen(port, '0.0.0.0', () => {
-  console.log(`Server is running on port http://localhost:${port}/index.html`);
+  console.log(`Server is running on port http://localhost:3001/index.html
+  Database Admin: http://localhost:8080`);
 });

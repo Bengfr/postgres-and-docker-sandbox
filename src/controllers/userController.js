@@ -1,4 +1,6 @@
-const { getAllUsersService, createUserService, getUserByIdService, updateUserService, deleteUserService } = require("../models/userModel")
+const jwt = require('jsonwebtoken');
+
+const { getAllUsersService, createUserService, getUserByIdService, updateUserService, deleteUserService, loginUserService } = require("../models/userModel")
 const handleResponse = (res, status, message, data = null) => {
     res.status(status).json({
         status,
@@ -63,11 +65,34 @@ const deleteUser = async (req, res, next) =>{
     }
 }
 
+const loginUser = async (req, res, next) => {
+    const {email, password} = req.body;
+    try {
+        const user = await loginUserService(email, password);
+
+        if (!user) {
+            return handleResponse(res, 401, "Invalid email or password");
+        }
+
+        // Create JWT token here
+        const token = jwt.sign(
+            { user_id: user.user_id, username: user.username, email: user.email },
+            process.env.JWT_SECRET,
+            { expiresIn: "1h" }
+        );
+
+        handleResponse(res, 200, "Login successful", { user, token });
+    } catch (err){
+        next(err);
+    }
+}
+
 module.exports = {
     handleResponse,
     createUser,
     getAllUsers,
     getUserByID,
     updateUser,
-    deleteUser
+    deleteUser,
+    loginUser
 };
