@@ -2,11 +2,10 @@ const { getAllPostService, createPostervice, getPostByIdService, updatePostervic
 const handleResponse = require("./userController").handleResponse;
 
 const createPost = async (req, res, next) =>{
-    const {user_id, created,post_title, post_description, post_content} = req.body;
+    const {user_id, post_date,post_title, post_description, post_content} = req.body;
     try {
-        const newPost = await createPostervice(user_id, created,post_title, post_description, post_content);
+        const newPost = await createPostervice(user_id, post_date,post_title, post_description, post_content);
         handleResponse(res, 201, "Post created successfully", newPost)
-        console.log(newPost);
     } catch (err) {
         next(err);
     }

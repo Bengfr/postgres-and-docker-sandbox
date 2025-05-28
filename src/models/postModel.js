@@ -1,7 +1,8 @@
 const pool = require('../config/db')
 
 const getAllPostService = async () => {
-    const result = await pool.query("SELECT * FROM blog_posts");
+    const result = await pool.query("SELECT * FROM aviw_blog_getposts");
+    console.log(result)
     return result.rows;
 };
 

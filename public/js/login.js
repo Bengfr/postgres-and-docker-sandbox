@@ -18,7 +18,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (response.ok) {
         const data = await response.json();
-        localStorage.setItem("jwtToken", data.token);
+        // Store the whole user object and token as one object
+        localStorage.setItem("user", JSON.stringify({
+            ...data.data.user,
+            token: data.data.token
+        }));
         window.location.href = "/index.html";
       } else {
         const errorData = await response.json();

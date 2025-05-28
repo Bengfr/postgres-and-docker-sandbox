@@ -10,3 +10,6 @@ host name: db
 maintenance database: blog
 username: postgres
 pw: Admin123
+
+
+npm install argon2 cors dotenv express jsonwebtoken pg
